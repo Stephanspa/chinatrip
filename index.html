@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China 2026 — Stephan &amp; Li-Yen</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --gold: #C9933A;
+    --ink: #1A1008;
+    --cream: #FAF6EE;
+    --warm-grey: #8C7B6B;
+    --light-gold: #F5E8C8;
+    --paper: #F2EBD9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* HERO — light */
+  .hero {
+    position: relative; height: 100vh; min-height: 580px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden; background: var(--cream);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 105%, rgba(200,16,46,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 35% at 8% 15%, rgba(201,147,58,0.06) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 30% at 92% 12%, rgba(200,16,46,0.04) 0%, transparent 55%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image:
+      repeating-linear-gradient(0deg, #C8102E 0, #C8102E 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(90deg, #C8102E 0, #C8102E 1px, transparent 1px, transparent 60px);
+  }
+  .corner { position: absolute; width: 72px; height: 72px; opacity: 0.15; }
+  .corner-tl { top: 22px; left: 22px; border-top: 2px solid var(--red); border-left: 2px solid var(--red); }
+  .corner-tr { top: 22px; right: 22px; border-top: 2px solid var(--red); border-right: 2px solid var(--red); }
+  .corner-bl { bottom: 22px; left: 22px; border-bottom: 2px solid var(--red); border-left: 2px solid var(--red); }
+  .corner-br { bottom: 22px; right: 22px; border-bottom: 2px solid var(--red); border-right: 2px solid var(--red); }
+
+  .lantern { position: absolute; top: -8px; animation: sway 4.5s ease-in-out infinite; }
+  .lantern:nth-child(5) { left: 9%;  animation-delay: 0s; }
+  .lantern:nth-child(6) { left: 24%; animation-delay: 1s; }
+  .lantern:nth-child(7) { right: 24%; animation-delay: 0.5s; }
+  .lantern:nth-child(8) { right: 9%; animation-delay: 1.5s; }
+  .lantern-string { width: 1px; height: 52px; background: linear-gradient(to bottom, rgba(160,110,20,0.3), rgba(160,110,20,0.05)); margin: 0 auto; }
+  .lantern-body { width: 22px; height: 32px; background: radial-gradient(ellipse at 35% 30%, #FF7A50, #C8102E); border-radius: 50%; box-shadow: 0 0 12px rgba(200,16,46,0.25), 0 0 24px rgba(200,16,46,0.08); border: 1px solid rgba(201,147,58,0.45); }
+  .lantern-tassel { width: 2px; height: 11px; background: linear-gradient(to bottom, var(--gold), transparent); margin: 0 auto; }
+  @keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+  .hero-content { position: relative; text-align: center; padding: 2rem; animation: fadeUp 1s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-chinese { font-family: 'Noto Serif SC', serif; font-size: clamp(1.3rem, 3.5vw, 2.2rem); color: var(--red); letter-spacing: 0.35em; display: block; margin-bottom: 0.8rem; opacity: 0.6; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 11vw, 8rem); color: var(--ink); line-height: 0.88; letter-spacing: -0.02em; font-weight: 700; }
+  .hero-title em { font-style: italic; color: var(--red); }
+  .hero-divider { width: 56px; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 1.6rem auto; }
+  .hero-names { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--ink); opacity: 0.6; letter-spacing: 0.08em; font-style: italic; }
+  .hero-subtitle { margin-top: 0.4rem; color: var(--warm-grey); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  .hero-meta { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.8rem; flex-wrap: wrap; }
+  .hero-tag { background: rgba(200,16,46,0.06); border: 1px solid rgba(200,16,46,0.18); color: var(--red); padding: 0.32rem 0.85rem; border-radius: 2px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .scroll-hint { position: absolute; bottom: 1.8rem; left: 50%; transform: translateX(-50%); color: rgba(26,16,8,0.22); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; animation: bounce 2.2s ease infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(7px); } }
+
+  /* OVERVIEW */
+  .overview { background: var(--red); padding: 1.1rem 2rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .overview-item { text-align: center; color: #fff; }
+  .overview-num { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; line-height: 1; }
+  .overview-label { font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; margin-top: 0.15rem; }
+
+  /* ROUTE */
+  .route-section { background: var(--paper); padding: 4rem 2rem; text-align: center; border-bottom: 1px solid rgba(201,147,58,0.2); }
+  .section-eyebrow { font-size: 0.67rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); font-weight: 500; margin-bottom: 0.4rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.5rem); margin-bottom: 2.5rem; color: var(--ink); }
+  .route-map { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; max-width: 960px; margin: 0 auto; }
+  .route-city { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+  .route-dot { width: 10px; height: 10px; background: var(--red); border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 4px rgba(200,16,46,0.07); }
+  .route-city-name { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--ink); }
+  .route-city-dates { font-size: 0.6rem; color: var(--warm-grey); }
+  .route-arrow { width: 30px; height: 1px; background: linear-gradient(to right, var(--gold), rgba(201,147,58,0.2)); position: relative; margin: 0 3px; margin-bottom: 26px; flex-shrink: 0; }
+  .route-arrow::after { content: '›'; position: absolute; right: -6px; top: -9px; color: var(--gold); font-size: 1rem; }
+
+  /* TIMELINE */
+  .timeline-section { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; }
+  .city-block { margin-bottom: 3.5rem; }
+  .city-header { display: flex; align-items: flex-end; gap: 1rem; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--gold); }
+  .city-number { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: rgba(200,16,46,0.09); line-height: 1; font-weight: 700; flex-shrink: 0; }
+  .city-info { flex: 1; }
+  .city-name { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 4vw, 2.1rem); color: var(--ink); line-height: 1; }
+  .city-name-cn { font-family: 'Noto Serif SC', serif; font-size: 0.9rem; color: var(--red); margin-top: 0.18rem; letter-spacing: 0.1em; }
+  .city-dates { font-size: 0.72rem; color: var(--warm-grey); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.25rem; }
+  .city-hotel { background: var(--light-gold); border: 1px solid rgba(201,147,58,0.3); border-radius: 4px; padding: 0.5rem 0.85rem; font-size: 0.76rem; color: var(--ink); text-align: right; flex-shrink: 0; }
+  .city-hotel-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-grey); }
+  .city-hotel-name { font-weight: 500; margin-top: 0.12rem; }
+
+  /* DAY CARD */
+  .day-card { background: #fff; border: 1px solid rgba(201,147,58,0.16); border-radius: 6px; margin-bottom: 0.75rem; overflow: hidden; transition: box-shadow 0.2s; }
+  .day-card:hover { box-shadow: 0 3px 14px rgba(0,0,0,0.06); }
+  .day-header { display: flex; align-items: stretch; cursor: pointer; }
+  .day-date-block { background: var(--ink); color: #fff; padding: 0.85rem 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 64px; flex-shrink: 0; }
+  .travel-day .day-date-block { background: #2B3A5C; }
+  .day-num { font-family: 'Playfair Display', serif; font-size: 1.45rem; line-height: 1; font-weight: 700; }
+  .day-month { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; margin-top: 0.08rem; }
+  .day-weekday { font-size: 0.55rem; opacity: 0.32; text-transform: uppercase; }
+  .day-summary { flex: 1; padding: 0.7rem 0.9rem; display: flex; flex-direction: column; justify-content: center; }
+  .day-title { font-family: 'Playfair Display', serif; font-size: 0.96rem; color: var(--ink); font-weight: 700; }
+  .day-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.3rem; }
+  .tag { font-size: 0.58rem; padding: 0.16rem 0.42rem; border-radius: 2px; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+  .tag-transport   { background: #E8F0FE; color: #2B5FBF; }
+  .tag-hotel       { background: var(--light-gold); color: #7A5C10; }
+  .tag-sightseeing { background: #E8F5E9; color: #2E7D32; }
+  .tag-food        { background: #FFF3E0; color: #E65100; }
+  .tag-activity    { background: #F3E5F5; color: #6A1B9A; }
+  .tag-personal    { background: #FCE4EC; color: #880E4F; }
+  .day-toggle { padding: 0 0.9rem; display: flex; align-items: center; color: var(--gold); font-size: 1.15rem; transition: transform 0.3s; flex-shrink: 0; }
+  .day-card.open .day-toggle { transform: rotate(90deg); }
+
+  /* EVENTS */
+  .events-list { display: none; border-top: 1px solid rgba(201,147,58,0.1); padding: 0.7rem 0; }
+  .day-card.open .events-list { display: block; }
+  .event-item { display: flex; gap: 0.9rem; padding: 0.5rem 1rem 0.5rem 1.1rem; border-left: 3px solid transparent; transition: background 0.12s; }
+  .event-item:hover { background: rgba(201,147,58,0.04); }
+  .event-item.transport   { border-left-color: #2B5FBF; }
+  .event-item.sightseeing { border-left-color: #2E7D32; }
+  .event-item.food        { border-left-color: #E65100; }
+  .event-item.activity    { border-left-color: #6A1B9A; }
+  .event-item.hotel       { border-left-color: #7A5C10; }
+  .event-item.personal    { border-left-color: #880E4F; }
+  .event-time { font-size: 0.68rem; color: var(--warm-grey); white-space: nowrap; padding-top: 0.1rem; min-width: 48px; font-weight: 500; }
+  .event-text { flex: 1; }
+  .event-name { font-size: 0.84rem; color: var(--ink); }
+  .event-note { font-size: 0.71rem; color: var(--warm-grey); margin-top: 0.16rem; font-style: italic; line-height: 1.4; }
+
+  /* PHOTOS */
+  .photo-drop-zone { margin: 0.35rem 1rem 0.35rem 4.2rem; border: 2px dashed rgba(201,147,58,0.25); border-radius: 4px; padding: 0.65rem; text-align: center; cursor: pointer; transition: all 0.2s; background: rgba(201,147,58,0.015); }
+  .photo-drop-zone:hover, .photo-drop-zone.drag-over { border-color: var(--gold); background: rgba(201,147,58,0.07); }
+  .photo-drop-text { font-size: 0.7rem; color: var(--warm-grey); user-select: none; }
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.4rem; margin-top: 0.45rem; }
+  .photo-item { position: relative; aspect-ratio: 1; border-radius: 3px; overflow: hidden; }
+  .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-remove { position: absolute; top: 3px; right: 3px; background: rgba(0,0,0,0.55); color: #fff; border: none; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  .photo-item:hover .photo-remove { opacity: 1; }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: rgba(255,255,255,0.38); text-align: center; padding: 3rem 2rem; font-size: 0.76rem; letter-spacing: 0.1em; }
+  .footer-chinese { font-family: 'Noto Serif SC', serif; font-size: 1.35rem; color: var(--gold); opacity: 0.55; display: block; margin-bottom: 0.7rem; }
+
+  @media (max-width: 600px) {
+    .city-header { flex-wrap: wrap; }
+    .city-hotel { text-align: left; }
+    .overview { gap: 1.4rem; }
+    .route-arrow { width: 16px; }
+  }
+  @media print {
+    .day-toggle, .photo-drop-zone { display: none; }
+    .events-list { display: block !important; }
+    .hero { height: auto; padding: 4rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  <div class="lantern"><div class="lantern-string"></div><div class="lantern-body"></div><div class="lantern-tassel"></div></div>
+  <div class="lantern"><div class="lantern-string"></div><div class="lantern-body"></div><div class="lantern-tassel"></div></div>
+  <div class="lantern"><div class="lantern-string"></div><div class="lantern-body"></div><div class="lantern-tassel"></div></div>
+  <div class="lantern"><div class="lantern-string"></div><div class="lantern-body"></div><div class="lantern-tassel"></div></div>
+  <div class="hero-content">
+    <span class="hero-chinese">中国之旅</span>
+    <h1 class="hero-title">China<br><em>2026</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-names">Stephan &amp; Li-Yen</p>
+    <p class="hero-subtitle">29 April – 26 May · 27 days</p>
+    <div class="hero-meta">
+      <span class="hero-tag">✈ Amsterdam → Beijing</span>
+      <span class="hero-tag">8 cities</span>
+      <span class="hero-tag">27 days</span>
+      <span class="hero-tag">✈ Beijing → Amsterdam</span>
+    </div>
+  </div>
+  <div class="scroll-hint">↓ scroll</div>
+</section>
+
+<div class="overview">
+  <div class="overview-item"><div class="overview-num">27</div><div class="overview-label">Days</div></div>
+  <div class="overview-item"><div class="overview-num">8</div><div class="overview-label">Cities</div></div>
+  <div class="overview-item"><div class="overview-num">5</div><div class="overview-label">Train trips</div></div>
+  <div class="overview-item"><div class="overview-num">6</div><div class="overview-label">Hotels</div></div>
+</div>
+
+<section class="route-section">
+  <p class="section-eyebrow">The Route</p>
+  <h2 class="section-title">From North to South &amp; Back</h2>
+  <div class="route-map">
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Beijing</div><div class="route-city-dates">Apr 30 – May 3</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Xi'an</div><div class="route-city-dates">May 3 – 8</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Chengdu</div><div class="route-city-dates">May 8 – 11</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Chongqing</div><div class="route-city-dates">May 11 – 12</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Zhangjiajie</div><div class="route-city-dates">May 12 – 17</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Shanghai</div><div class="route-city-dates">May 17 – 19</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Huangshan</div><div class="route-city-dates">May 19 – 21</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Shanghai</div><div class="route-city-dates">May 21 – 25</div></div>
+    <div class="route-arrow"></div>
+    <div class="route-city"><div class="route-dot"></div><div class="route-city-name">Beijing</div><div class="route-city-dates">May 25 – 26</div></div>
+  </div>
+</section>
+
+<section class="timeline-section">
+
+  <!-- ══ BEIJING ══ -->
+  <div class="city-block">
+    <div class="city-header">
+      <div class="city-number">01</div>
+      <div class="city-info">
+        <div class="city-name">Beijing</div>
+        <div class="city-name-cn">北京</div>
+        <div class="city-dates">April 30 – May 3 · 3 nights</div>
+      </div>
+      <div class="city-hotel">
+        <div class="city-hotel-label">Hotel</div>
+        <div class="city-hotel-name">Siji Yunduo Hotel</div>
+        <div style="font-size:0.6rem;color:var(--warm-grey)">Near Beijing South Station</div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">29</div><div class="day-month">Apr</div><div class="day-weekday">Wed</div></div>
+        <div class="day-summary"><div class="day-title">Departure — Amsterdam ✈ Beijing</div><div class="day-tags"><span class="tag tag-transport">Flight</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">All day</div><div class="event-text"><div class="event-name">✈ Flight Amsterdam → Beijing</div><div class="event-note">The adventure begins!</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">30</div><div class="day-month">Apr</div><div class="day-weekday">Thu</div></div>
+        <div class="day-summary"><div class="day-title">Arrival in Beijing</div><div class="day-tags"><span class="tag tag-hotel">Check-in</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item hotel"><div class="event-time">~23:00</div><div class="event-text"><div class="event-name">🏨 Check-in Siji Yunduo Hotel</div><div class="event-note">Beijing South Railway Station area</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">01</div><div class="day-month">May</div><div class="day-weekday">Fri</div></div>
+        <div class="day-summary"><div class="day-title">Jinshanling Great Wall</div><div class="day-tags"><span class="tag tag-transport">Shuttle</span><span class="tag tag-sightseeing">Great Wall</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">14:00</div><div class="event-text"><div class="event-name">🚌 Shuttlebus to Jinshanling Great Wall</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">16:00</div><div class="event-text"><div class="event-name">🏯 Hike the Jinshanling Great Wall</div><div class="event-note">Less crowded, incredibly scenic section of the Wall</div></div></div>
+        <div class="event-item transport"><div class="event-time">22:00</div><div class="event-text"><div class="event-name">🚌 Shuttlebus back to Beijing</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">02</div><div class="day-month">May</div><div class="day-weekday">Sat</div></div>
+        <div class="day-summary"><div class="day-title">Tiananmen · Forbidden City · Jingshan</div><div class="day-tags"><span class="tag tag-sightseeing">Guided tour</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">14:30</div><div class="event-text"><div class="event-name">📍 Pickup: MUJI Beijing Fang Branch</div><div class="event-note">Meet the guide here</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">15:30</div><div class="event-text"><div class="event-name">🏛 Tiananmen Square</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">16:30</div><div class="event-text"><div class="event-name">🏯 The Palace Museum (Forbidden City)</div><div class="event-note">Small group guided tour</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">19:00</div><div class="event-text"><div class="event-name">🏛 Treasury Hall</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">22:00</div><div class="event-text"><div class="event-name">🌿 Jingshan Park</div><div class="event-note">Panoramic views over the Forbidden City rooftops</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">03</div><div class="day-month">May</div><div class="day-weekday">Sun</div></div>
+        <div class="day-summary"><div class="day-title">Qianmen Street → Train to Xi'an</div><div class="day-tags"><span class="tag tag-sightseeing">Qianmen</span><span class="tag tag-transport">High-speed train</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item sightseeing"><div class="event-time">Morning</div><div class="event-text"><div class="event-name">🛍 Qianmen Street</div><div class="event-note">Historic pedestrian street with traditional shops and street food</div></div></div>
+        <div class="event-item transport"><div class="event-time">09:55</div><div class="event-text"><div class="event-name">🚄 Train: Beijing West → Xi'an North</div><div class="event-note">Arrives 14:05 · Tickets purchased</div></div></div>
+        <div class="event-item hotel"><div class="event-time">~21:00</div><div class="event-text"><div class="event-name">🏨 Check-in Maiyue Hotel, Xi'an</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ XI'AN ══ -->
+  <div class="city-block">
+    <div class="city-header">
+      <div class="city-number">02</div>
+      <div class="city-info"><div class="city-name">Xi'an</div><div class="city-name-cn">西安</div><div class="city-dates">May 3 – 8 · 5 nights</div></div>
+      <div class="city-hotel"><div class="city-hotel-label">Hotel</div><div class="city-hotel-name">Maiyue Hotel</div><div style="font-size:0.6rem;color:var(--warm-grey)">M1 Elegant Scenic Terrace Room</div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">04</div><div class="day-month">May</div><div class="day-weekday">Mon</div></div>
+        <div class="day-summary"><div class="day-title">Terracotta Army + Birthday Dinner 🎂</div><div class="day-tags"><span class="tag tag-sightseeing">Terracotta Army</span><span class="tag tag-food">Birthday</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item sightseeing"><div class="event-time">TBD</div><div class="event-text"><div class="event-name">🏺 Terracotta Army</div><div class="event-note">Timing to be confirmed once photoshoot schedule is set</div></div></div>
+        <div class="event-item food"><div class="event-time">Evening</div><div class="event-text"><div class="event-name">🎂 Birthday Dinner &amp; Xi'an Bell Tower</div><div class="event-note">Special evening to celebrate!</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">05</div><div class="day-month">May</div><div class="day-weekday">Tue</div></div>
+        <div class="day-summary"><div class="day-title">Hanfu &amp; Tang Dynasty Photoshoot</div><div class="day-tags"><span class="tag tag-activity">Photoshoot 📸</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item activity"><div class="event-time">TBD</div><div class="event-text"><div class="event-name">📸 Hanfu &amp; Tang Dynasty Costume Photoshoot</div><div class="event-note">Time TBD — confirmation expected</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">06</div><div class="day-month">May</div><div class="day-weekday">Wed</div></div>
+        <div class="day-summary"><div class="day-title">Orphanage &amp; Finding Place</div><div class="day-tags"><span class="tag tag-personal">Personal</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item personal"><div class="event-time">All day</div><div class="event-text"><div class="event-name">🏠 Orphanage &amp; finding place visit</div><div class="event-note">A meaningful and personal day</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">07</div><div class="day-month">May</div><div class="day-weekday">Thu</div></div>
+        <div class="day-summary"><div class="day-title">Free Day in Xi'an</div><div class="day-tags"><span class="tag tag-sightseeing">Free day</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item sightseeing"><div class="event-time">All day</div><div class="event-text"><div class="event-name">🌆 Free time in Xi'an</div><div class="event-note">Muslim Quarter, city walls, or relaxing before tomorrow's train</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">08</div><div class="day-month">May</div><div class="day-weekday">Fri</div></div>
+        <div class="day-summary"><div class="day-title">Train to Chengdu</div><div class="day-tags"><span class="tag tag-transport">High-speed train</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">12:17</div><div class="event-text"><div class="event-name">🚄 Train: Xi'an North → Chengdu East</div><div class="event-note">Arrives 16:04 · Tickets purchased</div></div></div>
+        <div class="event-item hotel"><div class="event-time">~23:00</div><div class="event-text"><div class="event-name">🏨 Check-in JianShan Town Hotel (Kuanzhai Alley)</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CHENGDU ══ -->
+  <div class="city-block">
+    <div class="city-header">
+      <div class="city-number">03</div>
+      <div class="city-info"><div class="city-name">Chengdu</div><div class="city-name-cn">成都</div><div class="city-dates">May 8 – 11 · 3 nights</div></div>
+      <div class="city-hotel"><div class="city-hotel-label">Hotel</div><div class="city-hotel-name">JianShan Town Hotel</div><div style="font-size:0.6rem;color:var(--warm-grey)">Kuanzhai Alley</div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">09</div><div class="day-month">May</div><div class="day-weekday">Sat</div></div>
+        <div class="day-summary"><div class="day-title">Pandas · Global Center · Wenshu Monastery</div><div class="day-tags"><span class="tag tag-activity">Pandas 🐼</span><span class="tag tag-sightseeing">Sightseeing</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item food"><div class="event-time">Morning</div><div class="event-text"><div class="event-name">🛍 Global Trade Center &amp; Dinner</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">Morning</div><div class="event-text"><div class="event-name">🏙 Tower of Vitality</div></div></div>
+        <div class="event-item activity"><div class="event-time">15:00</div><div class="event-text"><div class="event-name">🐼 Panda Breeding Center</div><div class="event-note">Chengdu Research Base — one of the best places in the world to see giant pandas!</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">21:00</div><div class="event-text"><div class="event-name">⛩ Wenshu Yuan Monastery</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">10</div><div class="day-month">May</div><div class="day-weekday">Sun</div></div>
+        <div class="day-summary"><div class="day-title">Taikoo Li · Hotpot · Kuan Zhai Alley</div><div class="day-tags"><span class="tag tag-food">Hotpot 🌶️</span><span class="tag tag-sightseeing">Shopping</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item food"><div class="event-time">Morning</div><div class="event-text"><div class="event-name">🌶️ Must Try — Sichuan Hotpot</div><div class="event-note">The real deal in Chengdu — don't miss this!</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">16:00</div><div class="event-text"><div class="event-name">🛍 Taikoo Li, IFS &amp; Chunxi Road</div><div class="event-note">Chengdu's best shopping and lifestyle district</div></div></div>
+        <div class="event-item food"><div class="event-time">22:00</div><div class="event-text"><div class="event-name">🍜 Lao Chengdu San Yang Mian</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">23:00</div><div class="event-text"><div class="event-name">🏘 Kuan Zhai Alley</div><div class="event-note">Historic narrow alleys — right next to the hotel!</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">11</div><div class="day-month">May</div><div class="day-weekday">Mon</div></div>
+        <div class="day-summary"><div class="day-title">Train to Chongqing · Tea Shop · Kuixing</div><div class="day-tags"><span class="tag tag-transport">Train</span><span class="tag tag-sightseeing">Chongqing evening</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">10:12</div><div class="event-text"><div class="event-name">🚄 Train: Chengdu East → Chongqing West</div><div class="event-note">Arrives 12:11</div></div></div>
+        <div class="event-item food"><div class="event-time">21:00</div><div class="event-text"><div class="event-name">🍵 Tea Shop 熹玥盒子</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">22:30</div><div class="event-text"><div class="event-name">🏙 Kuixing Building</div><div class="event-note">Looks like the ground floor — you're actually on floor 22!</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CHONGQING ══ -->
+  <div class="city-block">
+    <div class="city-header">
+      <div class="city-number">04</div>
+      <div class="city-info"><div class="city-name">Chongqing</div><div class="city-name-cn">重庆</div><div class="city-dates">May 11 – 12 · 1 night</div></div>
+      <div class="city-hotel"><div class="city-hotel-label">Hotel</div><div class="city-hotel-name">Jinyue Westside Hotel</div><div style="font-size:0.6rem;color:var(--warm-grey)">Near Chongqing West Station</div></div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">12</div><div class="day-month">May</div><div class="day-weekday">Tue</div></div>
+        <div class="day-summary"><div class="day-title">Hongyadong → Train to Zhangjiajie</div><div class="day-tags"><span class="tag tag-sightseeing">Hongyadong</span><span class="tag tag-transport">Train</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item sightseeing"><div class="event-time">Morning</div><div class="event-text"><div class="event-name">🏮 Hongyadong</div><div class="event-note">Chongqing's iconic illuminated stilt house complex over the river</div></div></div>
+        <div class="event-item transport"><div class="event-time">16:34</div><div class="event-text"><div class="event-name">🚄 Train: Chongqing West → Zhangjiajie West</div><div class="event-note">Arrives 20:15</div></div></div>
+        <div class="event-item hotel"><div class="event-time">~21:00</div><div class="event-text"><div class="event-name">🏨 Check-in Four Seasons Lai · Riverside Resort Hotel</div><div class="event-note">Baofeng Lake Scenic Area · Stay May 12–16</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ZHANGJIAJIE ══ -->
+  <div class="city-block">
+    <div class="city-header">
+      <div class="city-number">05</div>
+      <div class="city-info"><div class="city-name">Zhangjiajie</div><div class="city-name-cn">张家界</div><div class="city-dates">May 12 – 17 · 4 nights</div></div>
+      <div class="city-hotel"><div class="city-hotel-label">Hotel</div><div class="city-hotel-name">Four Seasons Lai · Riverside Resort</div><div style="font-size:0.6rem;color:var(--warm-grey)">Baofeng Lake Scenic Area</div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">13</div><div class="day-month">May</div><div class="day-weekday">Wed</div></div>
+        <div class="day-summary"><div class="day-title">National Forest Park — Avatar Hike</div><div class="day-tags"><span class="tag tag-activity">Avatar mountains 🏔</span><span class="tag tag-activity">Bailong Lift</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">13:15</div><div class="event-text"><div class="event-name">🚕 Taxi to Wulingyuan Gate (~5 min)</div></div></div>
+        <div class="event-item activity"><div class="event-time">14:00</div><div class="event-text"><div class="event-name">🛗 Bailong Elevator — world's tallest outdoor lift (326m!)</div><div class="event-note">Take the park shuttle (20 min) to reach it. Ticket booked.</div></div></div>
+        <div class="event-item activity"><div class="event-time">14:30</div><div class="event-text"><div class="event-name">🏔 The Avatar Hike — Yuanjiajie</div><div class="event-note">Mihun Terrace · Avatar Mountain · Greatest Natural Bridge</div></div></div>
+        <div class="event-item activity"><div class="event-time">17:30</div><div class="event-text"><div class="event-name">⛰ Luanchuan Slope — descent via thousands of steps</div><div class="event-note">Down to the Golden Whip Stream — a great workout!</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">20:00</div><div class="event-text"><div class="event-name">🌊 Golden Whip Stream — walk to the bus stop</div></div></div>
+        <div class="event-item transport"><div class="event-time">21:45</div><div class="event-text"><div class="event-name">🚕 Taxi back to hotel</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">14</div><div class="day-month">May</div><div class="day-weekday">Thu</div></div>
+        <div class="day-summary"><div class="day-title">Tianmen Mountain — Heaven's Gate</div><div class="day-tags"><span class="tag tag-activity">Cable car</span><span class="tag tag-activity">Glass skywalk</span><span class="tag tag-activity">999 steps</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">13:00</div><div class="event-text"><div class="event-name">🚕 Taxi to cable car station</div></div></div>
+        <div class="event-item activity"><div class="event-time">14:00</div><div class="event-text"><div class="event-name">🚡 Cable car up Tianmen Mountain</div><div class="event-note">China's longest cable car — spectacular! Entry 08:00–12:00. Ticket booked.</div></div></div>
+        <div class="event-item activity"><div class="event-time">15:00</div><div class="event-text"><div class="event-name">🌉 West-Line Hike — Glass Skywalk &amp; cliff path (3 km)</div></div></div>
+        <div class="event-item activity"><div class="event-time">16:30</div><div class="event-text"><div class="event-name">🚶 Escalators through the mountain — down</div></div></div>
+        <div class="event-item activity"><div class="event-time">17:00</div><div class="event-text"><div class="event-name">🚪 Heaven's Gate &amp; the 999 Steps</div><div class="event-note">Iconic arch — great photo op! Then walk the 999 steps down.</div></div></div>
+        <div class="event-item transport"><div class="event-time">18:30</div><div class="event-text"><div class="event-name">🚌 Bus 99 — the legendary road with 99 bends back to town</div></div></div>
+        <div class="event-item food"><div class="event-time">20:00</div><div class="event-text"><div class="event-name">🍽 Dinner in Zhangjiajie or at the hotel</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">15</div><div class="day-month">May</div><div class="day-weekday">Fri</div></div>
+        <div class="day-summary"><div class="day-title">Grand Canyon &amp; Glass Bridge</div><div class="day-tags"><span class="tag tag-activity">Glass bridge</span><span class="tag tag-activity">Zipline</span><span class="tag tag-sightseeing">Canyon hike</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">13:45</div><div class="event-text"><div class="event-name">🚕 Taxi to Glass Bridge</div></div></div>
+        <div class="event-item activity"><div class="event-time">14:45</div><div class="event-text"><div class="event-name">🌉 Zhangjiajie Grand Canyon &amp; Glass Bridge</div><div class="event-note">Ticket booked: Line B · 2 persons</div></div></div>
+        <div class="event-item activity"><div class="event-time">15:30</div><div class="event-text"><div class="event-name">🪂 Zipline &amp; slide to the bottom</div><div class="event-note">Book on site!</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">16:00</div><div class="event-text"><div class="event-name">🏞 Canyon walk</div></div></div>
+        <div class="event-item transport"><div class="event-time">17:30</div><div class="event-text"><div class="event-name">🚣 Boat back to exit</div></div></div>
+        <div class="event-item food"><div class="event-time">19:00</div><div class="event-text"><div class="event-name">🍽 Dinner in Zhangjiajie or at the hotel</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">16</div><div class="day-month">May</div><div class="day-weekday">Sat</div></div>
+        <div class="day-summary"><div class="day-title">Day trip — Furong Ancient Town</div><div class="day-tags"><span class="tag tag-transport">Train</span><span class="tag tag-sightseeing">Furong City</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">12:47</div><div class="event-text"><div class="event-name">🚄 Train: Zhangjiajie West → Furongzhen</div><div class="event-note">Arrives 13:10</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">19:00</div><div class="event-text"><div class="event-name">🏮 Furong Ancient Town</div><div class="event-note">Beautiful waterfall town — magical when lit up at night</div></div></div>
+        <div class="event-item transport"><div class="event-time">21:42</div><div class="event-text"><div class="event-name">🚄 Train: Furongzhen → Zhangjiajie West</div><div class="event-note">Arrives 22:06</div></div></div>
+        <div class="event-item hotel"><div class="event-time">~23:00</div><div class="event-text"><div class="event-name">🏨 Check-in YANYUJIAN Art B&amp;B</div><div class="event-note">Last night in the Zhangjiajie area</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">17</div><div class="day-month">May</div><div class="day-weekday">Sun</div></div>
+        <div class="day-summary"><div class="day-title">Train to Shanghai</div><div class="day-tags"><span class="tag tag-transport">High-speed train</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">14:38</div><div class="event-text"><div class="event-name">🚄 Train: Zhangjiajie West → Shanghai Hongqiao</div><div class="event-note">Arrives 21:57</div></div></div>
+        <div class="event-item hotel"><div class="event-time">~22:30</div><div class="event-text"><div class="event-name">🏨 Arrive in Shanghai — hotel TBD</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SHANGHAI / HUANGSHAN ══ -->
+  <div class="city-block">
+    <div class="city-header">
+      <div class="city-number">06</div>
+      <div class="city-info"><div class="city-name">Shanghai &amp; Huangshan</div><div class="city-name-cn">上海 · 黄山</div><div class="city-dates">May 17 – 25 · Final stretch</div></div>
+      <div class="city-hotel"><div class="city-hotel-label">Hotels</div><div class="city-hotel-name">To be confirmed</div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">18</div><div class="day-month">May</div><div class="day-weekday">Mon</div></div>
+        <div class="day-summary"><div class="day-title">Shanghai — 24h Spa Day</div><div class="day-tags"><span class="tag tag-activity">Spa 💆</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item activity"><div class="event-time">All day</div><div class="event-text"><div class="event-name">💆 24h Spa Experience</div><div class="event-note">Well-deserved rest after all those hikes and train journeys!</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">19</div><div class="day-month">May</div><div class="day-weekday">Tue</div></div>
+        <div class="day-summary"><div class="day-title">Huangshan — Yellow Mountain (Day 1)</div><div class="day-tags"><span class="tag tag-transport">Travel</span><span class="tag tag-activity">Hiking 🏔</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">Morning</div><div class="event-text"><div class="event-name">🚌 Journey from Shanghai to Huangshan</div></div></div>
+        <div class="event-item activity"><div class="event-time">Afternoon</div><div class="event-text"><div class="event-name">🏔 Hike up Huangshan</div><div class="event-note">Stay overnight on the mountain — legendary cloud-sea sunrises await</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">20</div><div class="day-month">May</div><div class="day-weekday">Wed</div></div>
+        <div class="day-summary"><div class="day-title">Huangshan — West Sea Grand Canyon (Day 2)</div><div class="day-tags"><span class="tag tag-activity">Grand Canyon hike</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item activity"><div class="event-time">All day</div><div class="event-text"><div class="event-name">🏞 West Sea Grand Canyon</div><div class="event-note">Most dramatic section of Huangshan — narrow paths, misty peaks, breathtaking views</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">21</div><div class="day-month">May</div><div class="day-weekday">Thu</div></div>
+        <div class="day-summary"><div class="day-title">Shanghai — Shopping, Health Check &amp; Exploring</div><div class="day-tags"><span class="tag tag-sightseeing">Shanghai</span><span class="tag tag-food">Shopping</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item sightseeing"><div class="event-time">May 21</div><div class="event-text"><div class="event-name">🛍 Shopping in Shanghai</div><div class="event-note">The Bund, Nanjing Road, Xintiandi — last chance for souvenirs!</div></div></div>
+        <div class="event-item activity"><div class="event-time">May 22</div><div class="event-text"><div class="event-name">🏥 Health Check</div></div></div>
+        <div class="event-item sightseeing"><div class="event-time">May 23–24</div><div class="event-text"><div class="event-name">🌆 Free days in Shanghai</div><div class="event-note">Museums, French Concession, Yu Garden, or just soak it all in</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">25</div><div class="day-month">May</div><div class="day-weekday">Mon</div></div>
+        <div class="day-summary"><div class="day-title">Train to Beijing</div><div class="day-tags"><span class="tag tag-transport">High-speed train</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">TBD</div><div class="event-text"><div class="event-name">🚄 Train: Shanghai → Beijing</div><div class="event-note">Tickets still to be booked — ~4.5 hrs on the high-speed line</div></div></div>
+        <div class="event-item hotel"><div class="event-time">Evening</div><div class="event-text"><div class="event-name">🏨 Last night in Beijing — hotel TBD</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+    <div class="day-card travel-day">
+      <div class="day-header" onclick="toggle(this)">
+        <div class="day-date-block"><div class="day-num">26</div><div class="day-month">May</div><div class="day-weekday">Tue</div></div>
+        <div class="day-summary"><div class="day-title">✈ Flight home — Beijing → Amsterdam</div><div class="day-tags"><span class="tag tag-transport">Flight home</span></div></div>
+        <div class="day-toggle">›</div>
+      </div>
+      <div class="events-list">
+        <div class="event-item transport"><div class="event-time">TBD</div><div class="event-text"><div class="event-name">✈ Flight: Beijing → Amsterdam Schiphol</div><div class="event-note">Safe travels! 再见 China 🇨🇳 — tot ziens thuis!</div></div></div>
+        <div class="photo-drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropPhotos(event,this)" onclick="clickUpload(this)"><div class="photo-drop-text">📷 Drop photos here or click to add</div><div class="photo-grid"></div><input type="file" accept="image/*" multiple style="display:none" onchange="handleFiles(this)"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span class="footer-chinese">一路平安</span>
+  Safe travels · Yi lù píng'ān
+  <div style="margin-top:0.5rem;font-size:0.65rem;opacity:0.3;">China 2026 · Stephan &amp; Li-Yen</div>
+</footer>
+
+<script>
+  function toggle(h) { h.closest('.day-card').classList.toggle('open'); }
+
+  function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+  function dragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+  function dropPhotos(e, zone) {
+    e.preventDefault(); zone.classList.remove('drag-over');
+    addPhotosToZone(Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/')), zone);
+  }
+  function clickUpload(zone) { zone.querySelector('input[type=file]').click(); }
+  function handleFiles(input) {
+    addPhotosToZone(Array.from(input.files), input.closest('.photo-drop-zone'));
+    input.value = '';
+  }
+  function addPhotosToZone(files, zone) {
+    const grid = zone.querySelector('.photo-grid');
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const item = document.createElement('div');
+        item.className = 'photo-item';
+        item.innerHTML = `<img src="${e.target.result}" alt=""><button class="photo-remove" onclick="this.closest('.photo-item').remove()" title="Remove">✕</button>`;
+        grid.appendChild(item);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.city-block .day-card:first-of-type .day-header').forEach(h => {
+      h.closest('.day-card').classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
